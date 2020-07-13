@@ -6,10 +6,11 @@ module SessionHelper
   end
 
 
-  # Remembers a user in a persistent session.
+   # Remembers a user in a persistent session.
   def remember(user)
     user.remember
-    cookies.permanent.encrypted[:user_id] = user.id cookies.permanent[:remember_token] = user.remember_token
+    cookies.permanent.encrypted[:user_id] = user.id
+    cookies.permanent[:remember_token] = user.remember_token
   end
 
   # Returns the current logged-in user (if any).
@@ -30,11 +31,19 @@ module SessionHelper
     !current_user.nil?
   end
 
+  def forget(user)
+    user.forget
+    cookies.delete(:user_id)
+    cookies.delete(remember_token)
+  end
+
   # Logs out the current user.
   def log_out
     session.delete(:user_id)
     @current_user = nil 
   end
 
+
+ 
 
 end
