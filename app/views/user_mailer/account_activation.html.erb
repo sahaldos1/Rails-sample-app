@@ -1,0 +1,9 @@
+<h1>FSample App</h1>
+
+
+<p> Hi <%= @user.name %> </p>
+<p>
+  Welcome to the Sample App! Click the link below to activat your account
+</p>
+
+<%= link_to "Activate", edit_account_activatoin_url(@user.account_token, email: @user.email) %>
