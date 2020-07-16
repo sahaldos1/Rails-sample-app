@@ -87,6 +87,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not jim.following?(blake) 
     jim.follow(blake)
     assert jim.following?(blake) 
+    assert blake.followers.include?(jim)
     jim.unfollow(blake)
     assert_not jim.following?(blake)
 end
